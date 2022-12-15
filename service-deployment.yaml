@@ -38,6 +38,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kuberntes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{HTTPS":443}]'
 spec:
   backend:
     serviceName: hello
@@ -48,4 +52,4 @@ spec:
         paths:
           - backend:
               serviceName: hello
-              servicePort: 8080
+              servicePort: 443
